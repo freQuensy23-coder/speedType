@@ -10,12 +10,14 @@ if __name__ == "__main__":
     words = list(DictLoader("word_rus.txt"))
     score = 0
     symbols = 0
-    game = True 
+    game = True
+    pre_text = "Input word"
     t0 = time()
     while game:
         word = choice(words)
         dt = time() - t0
         symbols += len(word)
+        print(pre_text)
         print("-"*10)
         print(word)
         print("-"*10)
