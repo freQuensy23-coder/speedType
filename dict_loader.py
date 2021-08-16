@@ -10,8 +10,9 @@ class FileDictLoader:
             if self.filter:
                 if self.filter(word):  
                     yield word.strip()
-                else:
-                    continue
+            else:
+                yield word.strip()
+                
 
     def __del__(self):
         self.file.close()
