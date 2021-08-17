@@ -17,16 +17,18 @@ if __name__ == "__main__":
         word = choice(words)
         dt = time() - t0
         symbols += len(word)
-        print(pre_text)
-        print("-"*10)
+        print(pre_text) # TODO Add color
+        print("-"*30)
         print(word)
-        print("-"*10)
-        print(f"score:   {score}  speed:   {symbols/dt * 60 } s/min")
+        print("-"*30)
+        print(f"score:   {score}  speed:   {symbols/dt * 60} s/min") # TODO Add formating, fixed number of symbols after coma
         answer = input().lower().strip()
-        if answer == word:
+        if answer == word.lower():
             beep("ok")
             score += 1
+            pre_text = "Ok"
         else:
             beep("wrong")
             score -= 1
+            pre_text = "Wrong"
         system('clear')
