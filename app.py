@@ -6,7 +6,7 @@ from time import time
 
 
 def beep(sound="ok"):
-    pass
+    pass # TODO
 
 dict_loader = DictLoader("word_rus.txt")
 
@@ -39,7 +39,7 @@ if __name__ == "__main__":
         symbols += len(word)
         dt = time() - t0
         speed = symbols/dt * 60
-        statistics.append(speed) #TODO пофиксить действия которые не должны выполняться в начале
+        statistics.append(speed) # TODO пофиксить действия которые не должны выполняться в начале
         interface.update_params(create=True, score=score, speed=speed, statistics=statistics, pre_text=pre_text, word=word)   
         system('clear')   
 
