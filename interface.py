@@ -3,22 +3,34 @@ def do_nothing(*args, **kwargs):
 
 class ConsoleInterface:
     def __init__(self):
-        self.status = "start"
-        self.action = do_nothing
-        self.word = None
+        self._status = "start"
         self.pre_text = "Input this word"
-        self.params = {}
-        
+        self._params = {}
+
     def __iter__(self):
-        if status == "start"
-            status = "work"
-            self.action = input
+        return self
+            
+    def __next__(self):
+        if self._status == "start":
+            self._status = "work"
             return "Press ENTER to start writing ...."
-        if status = "work":
-            print(self.params["pre_text"]) # TODO Add color
-            print("-"*30)
-            print(self.word)
-            print("-"*30)  # TODO Add current spead of typing
-            print(f"score:   {self.params['score']}  speed:   {self.params['speed']}  s/min") # TODO Add formating, fixed number of symbols after coma
+        if self._status == "work":
+            res = ""
+            res += self._params["pre_text"] + "\n" # TODO Add color
+            res += "-"*30 + "\n"
+            res += self._params['word'] + "\n"
+            res += "-"*30 + "\n"  # TODO Add current spead of typing
+            res += f"score:   {self._params['score']}  speed:   {self._params['speed']}  s/min \n" # TODO Add formating, fixed number of symbols after coma
+            return res
+
+    def update_params(self, create = False, **kwargs):
+        for param_name in kwargs.keys():
+            if param_name in self._params.keys():
+                self._params[param_name] = kwargs[param_name]
+            else:
+                if create:
+                    self._params[param_name] = kwargs[param_name]    
+                else:
+                    raise KeyError(f"No such param {param_name}")
                             
-    
+                
