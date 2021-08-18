@@ -23,12 +23,9 @@ if __name__ == "__main__":
     interface = ConsoleInterface()
     
     for line in interface:
-        system('clear')
-        print(line)
         answer = input()
 
 
-        
         if answer == word.lower():
            beep("ok")
            score += 1
@@ -42,26 +39,7 @@ if __name__ == "__main__":
         symbols += len(word)
         dt = time() - t0
         speed = symbols/dt * 60
-        statistics.append(speed)
-        interface.update_params(create=True, score=score, speed=speed, statistics=statistics, pre_text=pre_text, word=word)      
+        statistics.append(speed) #TODO пофиксить действия которые не должны выполняться в начале
+        interface.update_params(create=True, score=score, speed=speed, statistics=statistics, pre_text=pre_text, word=word)   
+        system('clear')   
 
-        
-    while game:
-        word = choice(words)
-        dt = time() - t0
-        symbols += len(word)
-        print(pre_text) # TODO Add color
-        print("-"*30)
-        print(word)
-        print("-"*30)  # TODO Add current spead of typing
-        print(f"score:   {score}  speed:   {symbols/dt * 60} s/min") # TODO Add formating, fixed number of symbols after coma
-        answer = input().lower().strip()
-        if answer == word.lower():
-            beep("ok")
-            score += 1
-            pre_text = "Ok"
-        else:
-            beep("wrong")
-            score -= 1
-            pre_text = "Wrong"
-       
